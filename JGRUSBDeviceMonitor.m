@@ -32,12 +32,15 @@ id referenceToSelf;
 }
 
 #pragma mark - IOKit Callbacks
-void usbDeviceAppeared(void *refCon, io_iterator_t iterator)
+void usbDeviceDisappeared(void __unused *refCon, io_iterator_t iterator);
+void    usbDeviceAppeared(void __unused *refCon, io_iterator_t iterator);
+
+void usbDeviceAppeared(void __unused *refCon, io_iterator_t iterator)
 {
     [referenceToSelf usbDeviceAdded:iterator];
 }
 
-void usbDeviceDisappeared(void *refCon, io_iterator_t iterator)
+void usbDeviceDisappeared(void __unused *refCon, io_iterator_t iterator)
 {
     [referenceToSelf usbDeviceRemoved:iterator];
 }
